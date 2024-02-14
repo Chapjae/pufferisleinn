@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <>
       <h1 className='fs-1 text-center'>Puffer Isle Inn</h1>
-      <ul className='nav nav-tabs justify-content-end' roles='tablist'>
+      <ul className='nav nav-tabs justify-content-end'>
         <li className='nav-item' role='presentation'>
           <Link
             to='/'
