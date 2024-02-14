@@ -7,7 +7,8 @@ import Home from './pages/Home.jsx';
 import Booking from './pages/Booking.jsx';
 import About from './pages/About.jsx';
 import Contact from './pages/Contact.jsx';
-
+import Area from './pages/Area.jsx';
+import Photos from './pages/Photos.jsx';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -29,6 +30,14 @@ const router = createBrowserRouter([
       {
         path: '/contact',
         element: <Contact />,
+      },
+      {
+        path: '/photos',
+        element: <Photos />,
+      },
+      {
+        path: '/area',
+        element: <Area />,
       },
     ],
   },

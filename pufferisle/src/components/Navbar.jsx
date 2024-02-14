@@ -1,49 +1,41 @@
-import { Link, useLocation } from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
+import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+import '../utils/styles/navbar.css';
 
-const Navbar = () => {
-  const currentPage = useLocation().pathname;
+const Navigation = () => {
+  // const currentPage = useLocation().pathname;
 
   return (
     <>
-      <h1 className='fs-1 text-center'>Puffer Isle Inn</h1>
-      <ul className='nav nav-tabs justify-content-end'>
-        <li className='nav-item' role='presentation'>
-          <Link
-            to='/'
-            className={currentPage == '/' ? 'nav-link active' : 'nav-link'}>
-            Home
-          </Link>
-        </li>
-        <li className='nav-item'>
-          <Link
-            to='/booking'
-            className={
-              currentPage == '/booking' ? 'nav-link active' : 'nav-link'
-            }>
-            Book a Room
-          </Link>
-        </li>
-        <li className='nav-item'>
-          <Link
-            to='/about'
-            className={
-              currentPage == '/about' ? 'nav-link active' : 'nav-link'
-            }>
-            About
-          </Link>
-        </li>
-        <li className='nav-item'>
-          <Link
-            to='/contact'
-            className={
-              currentPage == '/contact' ? 'nav-link active' : 'nav-link'
-            }>
-            Contact
-          </Link>
-        </li>
-      </ul>
+      <Navbar expand='lg' className='bg-body-tertiary'>
+        <Container>
+          <LinkContainer to='/'>
+            <Navbar.Brand>Home</Navbar.Brand>
+          </LinkContainer>
+          <Navbar.Toggle aria-controls='basic-navbar-nav' />
+          <Navbar.Collapse id='basic-navbar-nav'>
+            <Nav className='me-auto'>
+              <LinkContainer to='/booking'>
+                <Nav.Link>Book a Room</Nav.Link>
+              </LinkContainer>
+              <NavDropdown title='About'>
+                <LinkContainer to='/photos'>
+                  <NavDropdown.Item>Photos</NavDropdown.Item>
+                </LinkContainer>
+                <LinkContainer to='/area'>
+                  <NavDropdown.Item>The Area</NavDropdown.Item>
+                </LinkContainer>
+              </NavDropdown>
+              <LinkContainer to='/contact'>
+                <Nav.Link>Contact</Nav.Link>
+              </LinkContainer>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
     </>
   );
 };
 
-export default Navbar;
+export default Navigation;
