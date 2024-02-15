@@ -1,40 +1,49 @@
+import { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import '../utils/styles/navbar.css';
+// import '../utils/styles/navbar.css';
 
 const Navigation = () => {
   // const currentPage = useLocation().pathname;
+  const [show, setShow] = useState(false);
+  const showDropdown = (e) => {
+    setShow(!show);
+  };
+  const hideDropdown = (e) => {
+    setShow(false);
+  };
 
   return (
-    <>
-      <Navbar expand='lg' className='bg-body-tertiary'>
-        <Container>
-          <LinkContainer to='/'>
-            <Navbar.Brand>Home</Navbar.Brand>
+    <Navbar className='bg-body-tertiary'>
+      <Container>
+        <LinkContainer to='/'>
+          <Navbar.Brand>Home</Navbar.Brand>
+        </LinkContainer>
+        <Nav className='me-auto'>
+          <LinkContainer to='/booking'>
+            <Nav.Link>Book a Room</Nav.Link>
           </LinkContainer>
-          <Navbar.Toggle aria-controls='basic-navbar-nav' />
-          <Navbar.Collapse id='basic-navbar-nav'>
-            <Nav className='me-auto'>
-              <LinkContainer to='/booking'>
-                <Nav.Link>Book a Room</Nav.Link>
+          <LinkContainer to='/about'>
+            <NavDropdown
+              title='About'
+              show={show}
+              onMouseEnter={showDropdown}
+              onMouseLeave={hideDropdown}>
+              <LinkContainer to='/photos'>
+                <NavDropdown.Item>Photos</NavDropdown.Item>
               </LinkContainer>
-              <NavDropdown title='About'>
-                <LinkContainer to='/photos'>
-                  <NavDropdown.Item>Photos</NavDropdown.Item>
-                </LinkContainer>
-                <LinkContainer to='/area'>
-                  <NavDropdown.Item>The Area</NavDropdown.Item>
-                </LinkContainer>
-              </NavDropdown>
-              <LinkContainer to='/contact'>
-                <Nav.Link>Contact</Nav.Link>
+              <LinkContainer to='/area'>
+                <NavDropdown.Item>The Area</NavDropdown.Item>
               </LinkContainer>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-    </>
+            </NavDropdown>
+          </LinkContainer>
+          <LinkContainer to='/contact'>
+            <Nav.Link>Contact</Nav.Link>
+          </LinkContainer>
+        </Nav>
+      </Container>
+    </Navbar>
   );
 };
 
