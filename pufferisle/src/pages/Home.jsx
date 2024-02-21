@@ -1,5 +1,10 @@
+import welcome from '../images/home/welcome.jpg';
 const Home = () => {
-  return <></>;
+  return (
+    <>
+      <img src={welcome} />
+    </>
+  );
 };
 
 export default Home;
