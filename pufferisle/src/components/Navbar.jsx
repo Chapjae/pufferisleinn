@@ -26,8 +26,8 @@ const Navigation = () => {
           </LinkContainer>
           <LinkContainer to='/about'>
             <NavDropdown
-              title='About'
               show={show}
+              title='About'
               onMouseEnter={showDropdown}
               onMouseLeave={hideDropdown}>
               <LinkContainer to='/photos'>

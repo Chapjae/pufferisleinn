@@ -42,6 +42,10 @@
 // export default Booking;
 
 import { useState, useEffect } from 'react';
+import Container from 'react-bootstrap/Container';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
 
 const Booking = () => {
   const [roomUrls, setRoomUrls] = useState([]);
@@ -50,10 +54,12 @@ const Booking = () => {
     const importRooms = async () => {
       try {
         const rooms = import.meta.glob('../images/rooms/*.jpg');
+        console.log(rooms);
         const roomPaths = Object.keys(rooms);
         const urls = await Promise.all(
           roomPaths.map(async (path) => {
             const module = await rooms[path]();
+            console.log(module);
             return module.default; // Access the URL from the dynamically imported module
           }),
         );
@@ -69,11 +75,25 @@ const Booking = () => {
   return (
     <div>
       {roomUrls.length > 0 ? (
-        <div>
-          {roomUrls.map((url, index) => (
-            <img src={url} alt={`Room ${index + 1}`} key={index} />
-          ))}
-        </div>
+        <Container>
+          <Row>
+            {roomUrls.map((url, index) => (
+              <Card key={index} xs={6}>
+                <Card.Img
+                  src={url}
+                  alt={`Room ${index + 1}`}
+                  key={index}
+                  fluid
+                />
+                <Card.Body>
+                  <Card.Title>{url.slice(65, -4)}</Card.Title>
+                  <Card.Text>{index + 1}</Card.Text>
+                  <Button>Book This Room!</Button>
+                </Card.Body>
+              </Card>
+            ))}
+          </Row>
+        </Container>
       ) : (
         <div>No rooms found</div>
       )}
